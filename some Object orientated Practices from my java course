@@ -1,0 +1,78 @@
+//some code I wrote to demonstrate skills I learnt in Instantiating Objects, Inheritance, constructors, and overriding methods
+
+public class Main {
+    public static void main(String[] args) {
+    var car1 = new Car( 2011, "volvo", "G20");
+        var car2 = new Car( 2021, "skoda", "superb");
+        var car3 = new Car( 2016, "mitsibushi", "evo");
+        var car4 = new Car( 2019, "BMW", "3 series");
+        var car5 = new Car( 2014, "Mercedez", "Benz");
+
+        var motorcycle1 = new Motorcycle(2012, "suzuki");
+        var motorcycle2 = new Motorcycle(2005, "honda");
+        var motorcycle3 = new Motorcycle(2007, "Aprilla");
+        var motorcycle4 = new Motorcycle(1992, "Triumph");
+        var motorcycle5 = new Motorcycle(2002, "Toyota");
+
+        System.out.println("_____CARS_____");    //Using special characters to give the information a format on the console//
+        System.out.println("______________");
+        car1.displayInfo();
+        car2.displayInfo();                      //Calling the displayInfo method in the vehicle class for each object
+        car3.displayInfo();
+        car4.displayInfo();
+        car5.displayInfo();
+        System.out.println("_____BIKES_____");
+        System.out.println("_______________");
+        motorcycle1.displayInfo();
+        motorcycle2.displayInfo();
+        motorcycle3.displayInfo();
+        motorcycle4.displayInfo();
+        motorcycle5.displayInfo();
+    }
+}
+
+
+ abstract class Vehicle{
+     String type = "";
+     int year;
+
+        public Vehicle(){
+        type = "unknown";
+        year = 0;
+        }
+         Vehicle(String type, int year){     //Here implemented a constructor to allow objects to be instantiated in the main class using the 'this' keyword//
+            this.type = type;
+            this.year = year;
+        }
+     void displayDetails(){                //This method has been overridden and the displayInfo method implemented once from each class Car and Motorcycle.// 
+            }
+         abstract void displayInfo();
+ }
+
+
+
+class Car extends Vehicle{                  //the extends keyword is how I get the subclasses Car and Motorcycle to inherit the values int year and String type from the base class//
+
+  String model;
+
+   Car(int year, String type, String model){
+        super(type, year);
+        this.model = model;
+    }
+    @Override                              //Here I used the override annotation to supercede the display details method in the parent class//
+    void displayInfo(){
+        super.displayDetails();
+    System.out.println("Car: " + " " + type + " " + model + " " + year);
+    }
+}
+
+
+class Motorcycle extends Vehicle{
+    void displayInfo(){                     // the second second implementation of this method overriding the display details method in the vehicle class//
+        System.out.println("Motorcycle: " + type + " " + year);
+    }
+      Motorcycle(int year, String type){
+          this.year = year;
+          this.type = type;
+    }
+}
